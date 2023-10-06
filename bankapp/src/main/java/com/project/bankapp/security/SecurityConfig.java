@@ -1,5 +1,6 @@
 package com.project.bankapp.security;
 
+import com.project.bankapp.security.jwt.JwtAuthenticationEntryPoint;
 import com.project.bankapp.service.customuserdetail.CustomUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,9 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsServiceImpl customUserDetailsService;
 
+    //this is the class that will handle unauthorized requests
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
+    //this is the class that will validate tokens
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter(){
         return new JwtAuthenticationFilter();
