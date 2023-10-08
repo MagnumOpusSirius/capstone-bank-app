@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="USERS_TBL")
@@ -37,14 +38,28 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+//    private Collection<? extends GrantedAuthority> authorities;
+//
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+////        List<GrantedAuthority> authorities = new ArrayList<>();
+////        for(Role role: roles){
+////            authorities.add(new SimpleGrantedAuthority(role.getName().toString()));
+////
+////        }
+////        return authorities;
+//        return authorities;
+//    }
+@ElementCollection
+@CollectionTable(name = "user_authorities", joinColumns = @JoinColumn(name = "user_id"))
+@Column(name = "authority")
+private Set<String> authorities = new HashSet<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for(Role role: roles){
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
-
-        }
-        return authorities;
+        return authorities.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toSet());
     }
 
     @Override

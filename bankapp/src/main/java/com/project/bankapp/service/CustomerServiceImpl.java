@@ -5,6 +5,7 @@ import com.project.bankapp.model.ERole;
 import com.project.bankapp.model.Role;
 import com.project.bankapp.model.User;
 import com.project.bankapp.repository.CustomerRepository;
+import com.project.bankapp.repository.RoleRepository;
 import com.project.bankapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    RoleRepository roleRepository;
     @Override
     @Transactional
     public Customer registerCustomer(Customer customer) {
@@ -32,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService{
         User user = new User(savedCustomer.getUsername(), savedCustomer.getPassword());
 
         //Step 3: Set the users roles:
-        Optional<Role> customerRole = userRepository.findRoleByName(ERole.ROLE_CUSTOMER);
+        Optional<Role> customerRole = roleRepository.findByName(ERole.CUSTOMER);
         Set<Role> roles= new HashSet<>();
         customerRole.ifPresent(roles::add);
         user.setRoles(roles);
