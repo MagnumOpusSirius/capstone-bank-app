@@ -25,6 +25,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Autowired
     RoleRepository roleRepository;
+
     @Override
     @Transactional
     public Customer registerCustomer(Customer customer) {
@@ -39,6 +40,7 @@ public class CustomerServiceImpl implements CustomerService{
         Set<Role> roles= new HashSet<>();
         customerRole.ifPresent(roles::add);
         user.setRoles(roles);
+        System.out.println("User roles: " + user.getRoles());
 
         //Step 4: Save the user to USERS_TBL
         userRepository.save(user);
