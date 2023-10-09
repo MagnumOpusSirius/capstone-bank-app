@@ -2,38 +2,50 @@ package com.project.bankapp.service.accountService;
 
 import com.project.bankapp.dto.account.Account;
 import com.project.bankapp.dto.account.CreateAccountRequest;
-import com.project.bankapp.model.Customer;
-import com.project.bankapp.repository.AccountRepository;
-import com.project.bankapp.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.project.bankapp.dto.account.UpdateAccountRequest;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Optional;
+import java.util.List;
 
-@Service
-public class AccountService {
+public interface AccountService {
+    /*
+        * Creates a new account for a customer
+        * @param customerId
+        * @param createAccountRequest
+        * @return Account
+        * @throws EntityNotFoundException
+     */
+    Account createAccount(Long customerId, CreateAccountRequest createAccountRequest) throws EntityNotFoundException;
 
-    @Autowired
-    private AccountRepository accountRepository;
+    /*
+        * Gets account details by account Id
+        * @param accountId
+        * @return Account
+        * @throws EntityNotFoundException
+     */
+    Account getAccountById(Long accountId) throws EntityNotFoundException;
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    /*
+        * Updates an account details by account Id
+        * @param accountId
+        * @param updateAccountRequest
+        * @return Account
+        * @throws EntityNotFoundException
+     */
+    Account updateAccount(Long accountId, UpdateAccountRequest updateAccountRequest) throws EntityNotFoundException;
 
-    public Account createAccount(Long customerId, CreateAccountRequest createAccountRequest){
-        //find the customer by id
-       Optional<Customer> customerOptional = customerRepository.findById(customerId);
-       if(customerOptional.isEmpty()){
-           throw new EntityNotFoundException("Customer not found with id: " + customerId);
-       }
+    /*
+        * Deletes an account by account Id
+        * @param accountId
+        * @throws EntityNotFoundException
+     */
+    void deleteAccount(Long accountId) throws EntityNotFoundException;
 
-       Customer customer = customerOptional.get();
-
-        //create a new account based on the request data
-        Account account = new Account();
-        account.setAccountType(createAccountRequest.getAccountType());
-        account.setAccountBalance(createAccountRequest.getAccountBalance());
-        account.setApproved(createAccountRequest.getApproved());
-        account.
-    }
+    /*
+        * Get a list of accounts associated with a customer
+        * @param customerId
+        * @return List<Account>
+        * @throws EntityNotFoundException
+     */
+//    List<Account> getAccountsByCustomerId(Long customerId) throws EntityNotFoundException;
 }

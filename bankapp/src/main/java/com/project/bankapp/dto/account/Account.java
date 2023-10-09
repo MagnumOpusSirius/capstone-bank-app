@@ -5,6 +5,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -26,12 +28,15 @@ public class Account {
     @Column(nullable = false)
     private String approved;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerId")
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime dateOfCreation;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
     public Account(){
-
+        this.dateOfCreation = LocalDateTime.now();
     }
 
     public Account(Customer customer, AccountType accountType, BigDecimal accountBalance, String approved){
@@ -39,5 +44,6 @@ public class Account {
         this.accountType = accountType;
         this.accountBalance = accountBalance;
         this.approved = approved;
+        this.dateOfCreation = LocalDateTime.now();
     }
 }

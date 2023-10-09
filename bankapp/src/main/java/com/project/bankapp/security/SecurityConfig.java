@@ -70,23 +70,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/api/customer/register").permitAll()
                     .antMatchers("/api/customer/authenticate").permitAll()
-                    .antMatchers("/api/customer/**").hasRole("CUSTOMER")
-                    .antMatchers("/api/staff/**").hasRole("STAFF")
-                    .antMatchers("/api/admin/**").hasRole("ADMIN")
-                    .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/custom-login")
-                    .defaultSuccessUrl("/dashboard", true)
-                    .permitAll()
-                .and()
-                .logout()
-                    .logoutSuccessUrl("/login?logout") //after logout, redirect to login?logout
-                    .permitAll()
-                .and()
-                .exceptionHandling()
-                    .accessDeniedPage("/403"); //if user tries to access unauthorized page, redirect to 403
+                    .antMatchers("/api/customer/**").permitAll()
+//                    .antMatchers("/api/customer/**").hasRole("CUSTOMER")
+//                    .antMatchers("/api/staff/**").hasRole("STAFF")
+//                    .antMatchers("/api/admin/**").hasRole("ADMIN")
+                    .anyRequest().authenticated();
+//                .and()
+//                .formLogin()
+//                    .loginPage("/login")
+//                    .loginProcessingUrl("/custom-login")
+//                    .defaultSuccessUrl("/dashboard", true)
+//                    .permitAll()
+//                .and()
+//                .logout()
+//                    .logoutSuccessUrl("/login?logout") //after logout, redirect to login?logout
+//                    .permitAll()
+//                .and()
+//                .exceptionHandling()
+//                    .accessDeniedPage("/403"); //if user tries to access unauthorized page, redirect to 403
 
         http.addFilterBefore(authenticationJWTTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

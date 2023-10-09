@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /*
     * This class is responsible for creating a new account
@@ -25,14 +26,17 @@ public class CreateAccountRequest {
     @Pattern(regexp = "^(yes|no)$", message = "Approved status must be 'yes' or 'no'")
     private String approved;
 
+    private Date dateOfCreation;
+
     public CreateAccountRequest(){
 
     }
 
-    public CreateAccountRequest(AccountType accountType, BigDecimal accountBalance, String approved){
+    public CreateAccountRequest(AccountType accountType, BigDecimal accountBalance, String approved, Date dateOfCreation){
         this.accountType = accountType;
         this.accountBalance = accountBalance;
         this.approved = approved;
+        this.dateOfCreation = dateOfCreation;
     }
 
 
