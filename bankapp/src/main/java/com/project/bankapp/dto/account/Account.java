@@ -46,4 +46,8 @@ public class Account {
         this.approved = approved;
         this.dateOfCreation = LocalDateTime.now();
     }
+
+    public boolean isApproved(){
+        return this.approved.equals("Yes");
+    }
 }

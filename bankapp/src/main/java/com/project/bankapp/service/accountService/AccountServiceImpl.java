@@ -1,8 +1,6 @@
 package com.project.bankapp.service.accountService;
 
-import com.project.bankapp.dto.account.Account;
-import com.project.bankapp.dto.account.CreateAccountRequest;
-import com.project.bankapp.dto.account.UpdateAccountRequest;
+import com.project.bankapp.dto.account.*;
 import com.project.bankapp.model.Customer;
 import com.project.bankapp.repository.AccountRepository;
 import com.project.bankapp.repository.CustomerRepository;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService{
@@ -67,10 +66,21 @@ public class AccountServiceImpl implements AccountService{
         accountRepository.delete(existingAccount);
     }
 
-//    @Override
-//    public List<Account> getAccountsByCustomerId(Long customerId) throws EntityNotFoundException {
-//
-//        return accountRepository.findByCustomer_CustomerId(customerId);
-//
-//    }
+    @Override
+    public List<AccountSummaryDTO> getAccountsSummaryByCustomerId(Long customerId) {
+        //fetch accounts for the customer by customer Id:
+        List<Account> accounts = accountRepository.findByCustomerCustomerId(customerId);
+
+        //convert account entities to account summary DTOs:
+        return accounts.stream()
+                .map(account -> {
+                    AccountSummaryDTO accountSummaryDTO = new AccountSummaryDTO();
+                    accountSummaryDTO.setAccountNumber(account.getAccountId());
+                    accountSummaryDTO.setAccountType(account.getAccountType());
+                    accountSummaryDTO.setAccountBalance(account.getAccountBalance());
+                    accountSummaryDTO.setAccountStatus(account.isApproved() ? AccountStatus.ENABLE: AccountStatus.DISABLE);
+                    return accountSummaryDTO;
+                })
+                .collect(Collectors.toList());
+    }
 }

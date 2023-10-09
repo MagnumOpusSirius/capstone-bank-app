@@ -1,6 +1,7 @@
 package com.project.bankapp.service.accountService;
 
 import com.project.bankapp.dto.account.Account;
+import com.project.bankapp.dto.account.AccountSummaryDTO;
 import com.project.bankapp.dto.account.CreateAccountRequest;
 import com.project.bankapp.dto.account.UpdateAccountRequest;
 
@@ -47,5 +48,5 @@ public interface AccountService {
         * @return List<Account>
         * @throws EntityNotFoundException
      */
-//    List<Account> getAccountsByCustomerId(Long customerId) throws EntityNotFoundException;
+    List<AccountSummaryDTO> getAccountsSummaryByCustomerId(Long customerId);
 }

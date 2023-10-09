@@ -19,13 +19,14 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findByAccountType(String accountType);
 
     //find approved accounts
-//    List<Account> findByApprovedTrue();
+    List<Account> findByApprovedTrue();
 
     //find unapproved accounts
-//    List<Account> findByApprovedFalse();
+    List<Account> findByApprovedFalse();
 
     //find account by customer id and account type
 //    List<Account> findByCustomerIdAndAccountType(Long customerId, String accountType);
 
-//    List<Account> findByCustomer_CustomerId(Long customerId);
+    List<Account> findByCustomerCustomerId(Long customerId);
+
 }

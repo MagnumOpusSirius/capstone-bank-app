@@ -7,6 +7,7 @@ package com.project.bankapp.controller.customeraccount;
  */
 
 import com.project.bankapp.dto.account.Account;
+import com.project.bankapp.dto.account.AccountSummaryDTO;
 import com.project.bankapp.dto.account.CreateAccountRequest;
 import com.project.bankapp.dto.response.AccountResponse;
 import com.project.bankapp.service.accountService.AccountService;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/customer/{customerId}/account")
@@ -36,6 +38,16 @@ public class AccountController {
         }
     }
 
+    // ======================= Get Customer Accounts =======================
+    @GetMapping("/")
+    public ResponseEntity<List<AccountSummaryDTO>> getCustomerAccounts(@PathVariable Long customerId){
+        try{
+            List<AccountSummaryDTO> accountSummaryDTOList = accountService.getAccountsSummaryByCustomerId(customerId);
+            return ResponseEntity.ok(accountSummaryDTOList);
+        }catch (EntityNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
 
+    }
 
 }
