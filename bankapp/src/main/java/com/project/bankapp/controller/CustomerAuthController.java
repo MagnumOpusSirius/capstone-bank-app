@@ -38,8 +38,7 @@ public class CustomerAuthController {
 
     @Autowired
     private CustomUserDetailsServiceImpl customUserDetailsService;
-
-
+    // hello
     @Autowired
     private CustomerRepository customerRepository;
 
