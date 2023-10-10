@@ -124,7 +124,7 @@ public class AdminAuthController {
             if(statusUpdated){
                 return ResponseEntity.ok("Staff status updated successfully");
             }else{
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error updating staff status");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error updating staff status");
             }
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error updating staff status");

@@ -82,4 +82,9 @@ public class StaffService {
         }
     }
 
+    public Staff findStaffById(Long staffId){
+        return staffRepository.findById(staffId)
+                .orElseThrow(() -> new NoSuchElementException("Error: Staff is not found."));
+    }
+
 }
