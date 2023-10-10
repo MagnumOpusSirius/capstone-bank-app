@@ -19,10 +19,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -77,7 +74,7 @@ public class AdminAuthController {
         return ResponseEntity.ok(response);
     }
 
-    // ======================= Staff =======================
+    // ======================= CREATE Staff =======================
     @Autowired
     private StaffService staffService;
 
@@ -100,4 +97,9 @@ public class AdminAuthController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Error creating staff");
         }
     }
+
+    // ======================= GET Staff =======================
+    @Secured("ROLE_ADMIN") //only admin can access this endpoint
+    @GetMapping("/staff")
+
 }

@@ -1,5 +1,6 @@
 package com.project.bankapp.service.staff;
 
+import com.project.bankapp.dto.response.StaffResponse;
 import com.project.bankapp.model.ERole;
 import com.project.bankapp.model.Role;
 import com.project.bankapp.model.Staff;
@@ -13,9 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class StaffService {
@@ -51,6 +50,18 @@ public class StaffService {
 
         // Step 5: Return the saved staff
         return savedStaff;
+    }
+
+    public List<StaffResponse> getAllStaff(){
+        List<Staff> staffList = staffRepository.findAll();
+        List<StaffResponse> staffResponses = new ArrayList<>();
+
+        for(Staff staff: staffList){
+            StaffResponse staffResponse = new StaffResponse();
+            staffResponse.setStaffId(staff.getStaffId());
+            staffResponse.setStaffUserName(staff.getStaffUserName());
+            staffResponse.setStatus(staff.getStatus());
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.project.bankapp.model;
 
+import com.project.bankapp.dto.response.Status;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +24,9 @@ public class Staff {
 
     @NotBlank(message = "Staff password is mandatory")
     private String staffPassword;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Staff(){
 
