@@ -1,6 +1,7 @@
 package com.project.bankapp.service.staff;
 
 import com.project.bankapp.dto.response.StaffResponse;
+import com.project.bankapp.dto.response.Status;
 import com.project.bankapp.model.ERole;
 import com.project.bankapp.model.Role;
 import com.project.bankapp.model.Staff;
@@ -34,6 +35,7 @@ public class StaffService {
     @Transactional
     public Staff saveStaff(Staff staff) {
         // Step 1: Save staff data to STAFF_TBL
+        staff.setStatus(Status.DISABLE);
         Staff savedStaff = staffRepository.save(staff);
 
         // Step 2: Create a user in USERS_TBL using the staff's username and password
@@ -61,6 +63,22 @@ public class StaffService {
             staffResponse.setStaffId(staff.getStaffId());
             staffResponse.setStaffUserName(staff.getStaffUserName());
             staffResponse.setStatus(staff.getStatus());
+
+            staffResponses.add(staffResponse);
+        }
+        return staffResponses;
+    }
+
+    public boolean updateStaffStatus(Long staffId, Status status){
+        Optional<Staff> staffOptional = staffRepository.findById(staffId);
+
+        if(staffOptional.isPresent()){
+            Staff staff = staffOptional.get();
+            staff.setStatus(status);
+            staffRepository.save(staff);
+            return true;
+        }else {
+            return false; //staff not found!
         }
     }
 

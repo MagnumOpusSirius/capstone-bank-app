@@ -7,4 +7,10 @@ public class StaffResponse {
     private Long staffId;
     private String staffUserName;
     private Status status;
+
+    //constructor
+    public StaffResponse() {
+        // Default constructor
+    }
+
 }

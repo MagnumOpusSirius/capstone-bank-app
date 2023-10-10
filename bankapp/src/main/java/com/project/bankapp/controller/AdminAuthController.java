@@ -1,8 +1,10 @@
 package com.project.bankapp.controller;
 
 import com.project.bankapp.dto.LoginRequest;
+import com.project.bankapp.dto.StaffStatusRequest;
 import com.project.bankapp.dto.response.JwtResponse;
 import com.project.bankapp.dto.response.JwtResponseAdmin;
+import com.project.bankapp.dto.response.StaffResponse;
 import com.project.bankapp.model.Admin;
 import com.project.bankapp.model.Staff;
 import com.project.bankapp.model.User;
@@ -17,11 +19,14 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /*
@@ -101,5 +106,29 @@ public class AdminAuthController {
     // ======================= GET Staff =======================
     @Secured("ROLE_ADMIN") //only admin can access this endpoint
     @GetMapping("/staff")
+    public ResponseEntity<List<StaffResponse>> getAllStaff(){
+        List<StaffResponse> staffList = staffService.getAllStaff();
+
+        if(staffList.isEmpty()){
+            return ResponseEntity.ok(Collections.emptyList());
+        }else {
+            return ResponseEntity.ok(staffList);
+        }
+    }
+    // ======================= UPDATE Staff Status=======================
+    @Secured("ROLE_ADMIN") //only admin can access this endpoint
+    @PutMapping("/staff")
+    public ResponseEntity<?> updateStaffStatus(@RequestBody StaffStatusRequest request) {
+        try {
+            boolean statusUpdated= staffService.updateStaffStatus(request.getStaffId(), request.getStatus());
+            if(statusUpdated){
+                return ResponseEntity.ok("Staff status updated successfully");
+            }else{
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error updating staff status");
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error updating staff status");
+        }
+    }
 
 }
