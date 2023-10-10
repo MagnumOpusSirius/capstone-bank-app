@@ -11,6 +11,9 @@ public class JwtResponse {
     private String username;
     private Set<String> roles;
 
+    public JwtResponse(String jwtToken) {
+        this.jwtToken = jwtToken;
+    }
     public JwtResponse(Long id, String jwtToken, String username, Set<String> roles) {
         this.id = id;
         this.jwtToken = jwtToken;
