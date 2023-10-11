@@ -23,7 +23,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(  name = "user_roles",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -50,15 +50,18 @@ public class User implements UserDetails {
 ////        return authorities;
 //        return authorities;
 //    }
-@ElementCollection
-@CollectionTable(name = "user_authorities", joinColumns = @JoinColumn(name = "user_id"))
-@Column(name = "authority")
-private Set<String> authorities = new HashSet<>();
+//@ElementCollection
+//@CollectionTable(name = "user_authorities", joinColumns = @JoinColumn(name = "user_id"))
+//@Column(name = "authority")
+//private Set<String> authorities = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities.stream()
-                .map(SimpleGrantedAuthority::new)
+//        return authorities.stream()
+//                .map(SimpleGrantedAuthority::new)
+//                .collect(Collectors.toSet());
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().toString()))
                 .collect(Collectors.toSet());
     }
 

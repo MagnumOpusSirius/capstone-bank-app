@@ -32,6 +32,10 @@ public class StaffService {
         return staffRepository.existsByStaffUserName(staffUserName);
     }
 
+    public Optional<Staff> findByUsername(String staffUserName) {
+        return staffRepository.findByStaffUserName(staffUserName);
+    }
+
     @Transactional
     public Staff saveStaff(Staff staff) {
         // Step 1: Save staff data to STAFF_TBL
