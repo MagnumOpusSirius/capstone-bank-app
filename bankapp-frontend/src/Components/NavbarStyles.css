@@ -1,0 +1,36 @@
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: black;
+    padding: 20px 80px;
+    box-shadow: 0 5px 15px rgba(red, green, blue, alpha);
+}
+
+#nav-items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nav-items li{
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+    
+}
+
+#nav-items li a{
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+}
+
+#nav-items li a:hover,
+#nav-items li a.home{
+    color: red;
+}
+#nav-items li a:hover{
+    color: blue;
+}

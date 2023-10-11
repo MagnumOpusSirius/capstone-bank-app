@@ -1,29 +1,35 @@
+import "./NavbarStyles.css";
+
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <nav >
+        <a href="index.html">
+
+        </a>
         
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <Link class="nav-link" to="/">
+        <div class="navbar">
+          <ul id="nav-items">
+            <li>
+              <a className="home" to="/">
                 Home
-              </Link>
+              </a>
             </li>
             
-            <li class="nav-item">
-              <Link class="nav-link" to="dashboard">
+            <li>
+              <a 
+              href="nav-link" to="dashboard">
                 Dashboard
-              </Link>
+              </a>
             </li>
             
-            <li class="nav-item">
-              <Link class="nav-link" to="Register">
+            <li>
+              <a class="nav-link" to="Register">
                 Register
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
