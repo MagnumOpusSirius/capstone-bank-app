@@ -1,29 +1,35 @@
+import "./NavbarStyles.css";
+
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Dashboard_navbar = () => {
+const DashboardNavbar = () => {
   return (
     <>
-      <nav class="dashboard_navbar dashboard_navbar-expand-md navbar-dark bg-dark fixed-top">
+      <nav >
+        <a href="index.html">
+
+        </a>
         
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <Link class="nav-link" to="/">
+        <div class="navbar">
+          <ul id="nav-items">
+            <li>
+              <a className="profile" to="/">
                 Profile
-              </Link>
+              </a>
             </li>
             
-            <li class="nav-item">
-              <Link class="nav-link" to="logout">
+            <li>
+              <a 
+              href="nav-link" to="logout">
                 Logout
-              </Link>
+              </a>
             </li>
             
-            <li class="nav-item">
-              <Link class="nav-link" to="Register">
-                Welcome, {User}
-              </Link>
+            <li>
+              <a class="nav-link" to="Welcome">
+                Welcome{props}
+              </a>
             </li>
           </ul>
         </div>
@@ -32,4 +38,4 @@ const Dashboard_navbar = () => {
   );
 };
 
-export default Dashboard_navbar;
+export default DashboardNavbar;
