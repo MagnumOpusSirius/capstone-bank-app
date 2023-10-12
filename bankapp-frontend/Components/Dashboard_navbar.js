@@ -1,4 +1,4 @@
-import "./NavbarStyles.css";
+import "./DashboardNavStyles.css";
 
 import React from "react";
 import { Link } from "react-router-dom";
