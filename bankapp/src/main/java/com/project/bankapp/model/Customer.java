@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="CUSTOMER_TBL")
@@ -21,6 +22,21 @@ public class Customer {
 
     @NotBlank
     private String password;
+
+    @NotNull
+    private String phone;
+
+    @NotNull
+    private String pan;
+
+    @NotNull
+    private String aadhar;
+
+    @NotNull
+    private String secretQuestion;
+
+    @NotNull
+    private String secretAnswer;
 
     //constructor
     public Customer(){

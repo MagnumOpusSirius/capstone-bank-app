@@ -1,6 +1,7 @@
 package com.project.bankapp.controller;
 
 import com.project.bankapp.dto.LoginRequest;
+import com.project.bankapp.dto.UpdateCustomerRequest;
 import com.project.bankapp.dto.response.JwtResponse;
 import com.project.bankapp.model.Customer;
 import com.project.bankapp.model.ERole;
@@ -21,7 +22,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -95,6 +98,41 @@ public class CustomerAuthController {
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username/password supplied!");
         }
+    }
+
+    // ======================= Get Customer By Id =======================
+    @GetMapping("/{customerId}")
+    public ResponseEntity<?> getCustomerById(@PathVariable Long customerId){
+
+        //call the service method to get the customer by id
+        Customer customer = customerService.getCustomerById(customerId);
+
+        if(customer == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Sorry Customer With ID " + customerId + " not found");
+        }
+        Map<String, String> response=new HashMap<>();
+        response.put("username", customer.getUsername());
+        response.put("fullName", customer.getFullName());
+        response.put("phone", customer.getPhone());
+        response.put("pan", customer.getPan());
+        response.put("aadhar", customer.getAadhar());
+
+        return ResponseEntity.ok(response);
+    }
+
+    // ======================= Update Customer By Id =======================
+    @PutMapping("/{customerId}")
+    public ResponseEntity<?> updateCustomerById(@PathVariable Long customerId, @Valid @RequestBody UpdateCustomerRequest customer){
+//        if(!customerService.existsById(customerId)){
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                    .body("Sorry Customer With ID " + customerId + " not found");
+//        }
+
+        //call the service method to update the customer
+        customerService.updateCustomer(customerId, customer);
+
+        return ResponseEntity.ok("Customer updated successfully!");
     }
 
 }
