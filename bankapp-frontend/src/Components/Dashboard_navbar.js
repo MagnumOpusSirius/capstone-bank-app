@@ -28,7 +28,7 @@ const DashboardNavbar = () => {
             
             <li>
               <a class="nav-link" to="Welcome">
-                Welcome{props}
+                Welcome
               </a>
             </li>
           </ul>

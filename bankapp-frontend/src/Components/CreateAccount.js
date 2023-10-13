@@ -1,4 +1,5 @@
 import React from "react";
+import Boxes from "./Boxes";
 
 const CreateAccount = props => {
 
@@ -13,3 +14,5 @@ const CreateAccount = props => {
         </div>
     )
 }
+
+export default CreateAccount;

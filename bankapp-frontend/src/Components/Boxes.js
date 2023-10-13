@@ -15,12 +15,12 @@ const Boxes = () => {
 
     return (
         <div>
-        <Checkbox
+        <Boxes
             label="Savings Account"
             value={checkedSavings}
             onChange={handleChangeSavings}
         />
-        <Checkbox
+        <Boxes
             label="Current Account"
             value={checkedCurrent}
             onChange={handleChangeCurrent}
