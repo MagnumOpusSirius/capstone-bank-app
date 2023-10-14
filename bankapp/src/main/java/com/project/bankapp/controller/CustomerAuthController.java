@@ -1,7 +1,10 @@
 package com.project.bankapp.controller;
 
+import com.project.bankapp.controller.customeraccount.AccountController;
 import com.project.bankapp.dto.LoginRequest;
 import com.project.bankapp.dto.UpdateCustomerRequest;
+import com.project.bankapp.dto.beneficiary.BeneficiaryRequest;
+import com.project.bankapp.dto.response.CustomerAccountResponse;
 import com.project.bankapp.dto.response.JwtResponse;
 import com.project.bankapp.model.Customer;
 import com.project.bankapp.model.ERole;
@@ -10,7 +13,9 @@ import com.project.bankapp.repository.CustomerRepository;
 import com.project.bankapp.security.jwt.JwtTokenProvider;
 import com.project.bankapp.service.CustomerService;
 import com.project.bankapp.service.CustomerServiceImpl;
+import com.project.bankapp.service.beneficiaryService.BeneficiaryService;
 import com.project.bankapp.service.customuserdetail.CustomUserDetailsServiceImpl;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -133,6 +139,52 @@ public class CustomerAuthController {
         customerService.updateCustomer(customerId, customer);
 
         return ResponseEntity.ok("Customer updated successfully!");
+    }
+
+    // ======================= GET customer account with the account ID =======================
+    @GetMapping("{customerId}/account/{accountId}")
+    public ResponseEntity<?> getCustomerAccountById(@PathVariable Long customerId, @PathVariable Long accountId){
+        CustomerAccountResponse accountResponse = customerService.getCustomerAccountByAccountId(customerId, accountId);
+
+        if(accountResponse != null){
+            return ResponseEntity.ok(accountResponse);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found!");
+        }
+
+    }
+
+    @Autowired
+    private BeneficiaryService beneficiaryService;
+    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(AccountController.class);
+    // ======================= Add Beneficiary =======================
+    @PostMapping("{customerId}/beneficiary")
+    public ResponseEntity<?> addBeneficiary(@PathVariable Long customerId, @RequestBody BeneficiaryRequest beneficiaryRequest){
+        try {
+            String response = beneficiaryService.addBeneficiary(customerId, beneficiaryRequest);
+            logger.info("Beneficiary added: {}", response);
+            return ResponseEntity.ok(response);
+        } catch (EntityNotFoundException e) {
+            logger.error("Customer not found", e);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found");
+        } catch (Exception e) {
+            logger.error("Customer not found", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
+    }
+
+    // ======================= Delete Beneficiary =======================
+    @DeleteMapping("{customerId}/beneficiary/{beneficiaryId}")
+    public ResponseEntity<?> deleteBeneficiary(@PathVariable Long customerId, @PathVariable Long beneficiaryId){
+        try {
+            String response = beneficiaryService.deleteBeneficiary(customerId, beneficiaryId);
+            return ResponseEntity.ok(response);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Beneficiary not found");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
     }
 
 }

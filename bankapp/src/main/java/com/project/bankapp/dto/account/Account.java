@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -35,6 +36,10 @@ public class Account {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Transaction> transactions;
+
+    private AccountStatus accountStatus;
     public Account(){
         this.dateOfCreation = LocalDateTime.now();
     }

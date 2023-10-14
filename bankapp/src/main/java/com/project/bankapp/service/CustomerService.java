@@ -1,6 +1,7 @@
 package com.project.bankapp.service;
 
 import com.project.bankapp.dto.UpdateCustomerRequest;
+import com.project.bankapp.dto.response.CustomerAccountResponse;
 import com.project.bankapp.model.Customer;
 import org.hibernate.sql.Update;
 
@@ -13,4 +14,7 @@ public interface CustomerService {
 
     //update customer
     Customer updateCustomer(Long customerId, UpdateCustomerRequest updateCustomerRequest);
+
+    //get customer account by account id
+    CustomerAccountResponse getCustomerAccountByAccountId(Long customerId, Long accountId);
 }

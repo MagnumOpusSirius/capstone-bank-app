@@ -9,8 +9,12 @@ package com.project.bankapp.controller.customeraccount;
 import com.project.bankapp.dto.account.Account;
 import com.project.bankapp.dto.account.AccountSummaryDTO;
 import com.project.bankapp.dto.account.CreateAccountRequest;
+import com.project.bankapp.dto.beneficiary.BeneficiaryRequest;
 import com.project.bankapp.dto.response.AccountResponse;
+import com.project.bankapp.service.CustomerServiceImpl;
 import com.project.bankapp.service.accountService.AccountService;
+import com.project.bankapp.service.beneficiaryService.BeneficiaryService;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,5 +53,6 @@ public class AccountController {
         }
 
     }
+
 
 }
