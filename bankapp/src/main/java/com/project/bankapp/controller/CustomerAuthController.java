@@ -4,6 +4,7 @@ import com.project.bankapp.controller.customeraccount.AccountController;
 import com.project.bankapp.dto.LoginRequest;
 import com.project.bankapp.dto.UpdateCustomerRequest;
 import com.project.bankapp.dto.beneficiary.BeneficiaryRequest;
+import com.project.bankapp.dto.beneficiary.BeneficiaryResponse;
 import com.project.bankapp.dto.response.CustomerAccountResponse;
 import com.project.bankapp.dto.response.JwtResponse;
 import com.project.bankapp.model.Customer;
@@ -28,10 +29,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -184,6 +182,19 @@ public class CustomerAuthController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Beneficiary not found");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
+        }
+    }
+
+    // ======================= Get All Beneficiary for given customer id=======================
+    @GetMapping("{customerId}/beneficiary")
+    public ResponseEntity<List<BeneficiaryResponse>> getAllBeneficiary(@PathVariable Long customerId){
+        try {
+            List<BeneficiaryResponse> response = beneficiaryService.getAllBeneficiaries(customerId);
+            return ResponseEntity.ok(response);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 

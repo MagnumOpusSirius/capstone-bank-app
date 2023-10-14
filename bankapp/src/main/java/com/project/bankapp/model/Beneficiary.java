@@ -24,6 +24,12 @@ public class Beneficiary {
     @Column(nullable = false)
     private String approved;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private Boolean isActive;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;

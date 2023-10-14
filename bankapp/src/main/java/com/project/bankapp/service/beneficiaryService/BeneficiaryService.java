@@ -2,6 +2,7 @@ package com.project.bankapp.service.beneficiaryService;
 
 import com.project.bankapp.dto.account.Account;
 import com.project.bankapp.dto.beneficiary.BeneficiaryRequest;
+import com.project.bankapp.dto.beneficiary.BeneficiaryResponse;
 import com.project.bankapp.model.Beneficiary;
 import com.project.bankapp.model.Customer;
 import com.project.bankapp.repository.BeneficiaryRepository;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -84,5 +87,38 @@ public class BeneficiaryService {
             throw new EntityNotFoundException("Beneficiary not found");
         }
 
+    }
+
+    // ======================= Get all beneficiary =======================
+    public List<BeneficiaryResponse> getAllBeneficiaries(Long customerId){
+        //create a list to store the mapped beneficiary response objects
+        List<BeneficiaryResponse> beneficiaryResponseList = new ArrayList<>();
+
+        //retrieve the customer by id
+        Optional<Customer> customerOptional = customerRepository.findById(customerId);
+
+        //check if the customer exists
+        if(customerOptional.isPresent()){
+            //get the customer
+            Customer customer = customerOptional.get();
+
+            //get the list of beneficiaries
+            List<Beneficiary> beneficiaryList = customer.getBeneficiaries();
+
+            //loop through the list of beneficiaries
+            for(Beneficiary beneficiary: beneficiaryList){
+                //create a new beneficiary response object
+                BeneficiaryResponse response = new BeneficiaryResponse();
+
+                //set the beneficiary response object properties
+                response.setBeneficiaryAccountNumber(beneficiary.getAccountNumber());
+                response.setBeneficiaryName(beneficiary.getName());
+                response.setActive(beneficiary.getIsActive() ? "yes" : "no");
+
+                //add the beneficiary response object to the list
+                beneficiaryResponseList.add(response);
+            }
+        }
+        return beneficiaryResponseList;
     }
 }
