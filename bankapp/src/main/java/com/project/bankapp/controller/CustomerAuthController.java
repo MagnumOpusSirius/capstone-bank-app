@@ -2,6 +2,7 @@ package com.project.bankapp.controller;
 
 import com.project.bankapp.controller.customeraccount.AccountController;
 import com.project.bankapp.dto.LoginRequest;
+import com.project.bankapp.dto.SecretValidationRequest;
 import com.project.bankapp.dto.UpdateCustomerRequest;
 import com.project.bankapp.dto.account.TransferRequest;
 import com.project.bankapp.dto.beneficiary.BeneficiaryRequest;
@@ -212,4 +213,15 @@ public class CustomerAuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insufficient balance");
         }
     }
+
+    // ======================= Validate Secret Question/Answer details =======================
+//    @GetMapping("/{username}/forgot/{question}/{answer}")
+//    public ResponseEntity<?> validateSecretDetails(@PathVariable String username, @PathVariable String question, @PathVariable String answer, @RequestBody SecretValidationRequest secretValidationRequest){
+//        try {
+//            String response = customerService.validateSecretDetails(username, secretValidationRequest);
+//            return ResponseEntity.ok(response);
+//        } catch (EntityNotFoundException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sorry your secret details are not matching");
+//        }
+//    }
 }

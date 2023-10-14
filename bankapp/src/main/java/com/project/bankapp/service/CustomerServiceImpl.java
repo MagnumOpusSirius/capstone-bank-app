@@ -1,5 +1,6 @@
 package com.project.bankapp.service;
 
+import com.project.bankapp.dto.SecretValidationRequest;
 import com.project.bankapp.dto.UpdateCustomerRequest;
 import com.project.bankapp.dto.account.Account;
 import com.project.bankapp.dto.account.Transaction;
@@ -130,6 +131,7 @@ public class CustomerServiceImpl implements CustomerService{
     // ======================= Transfer Between Accounts =======================
     @Autowired
     private AccountServiceImpl accountService;
+
     public String transferBetweenAccounts(TransferRequest transferRequest){
         Long fromAccountNumber = transferRequest.getFromAccountNumber();
         Long toAccountNumber = transferRequest.getToAccountNumber();
@@ -162,5 +164,23 @@ public class CustomerServiceImpl implements CustomerService{
         else{
             return "Invalid account number(s)!";
         }
+    }
+
+    // ======================= Validate Secret Details =======================
+    public String validateSecretDetails(String username, SecretValidationRequest secretValidationRequest){
+        Customer customer = customerRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("Customer with username " + username + " does not exist!"));
+
+        if(customer != null){
+            String storedSecretQuestion = customer.getSecretQuestion();
+            String storedSecretAnswer = customer.getSecretAnswer();
+
+            String providedQuestion = secretValidationRequest.getSecretQuestion();
+            String providedAnswer = secretValidationRequest.getSecretAnswer();
+
+            if(storedSecretQuestion.equals(providedQuestion) && storedSecretAnswer.equals(providedAnswer)){
+                return "Secret details are valid!";
+            }
+        }
+        throw new EntityNotFoundException("Sorry your secret details are not matching");
     }
 }
