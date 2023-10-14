@@ -3,7 +3,9 @@ package com.project.bankapp.service;
 import com.project.bankapp.dto.UpdateCustomerRequest;
 import com.project.bankapp.dto.account.Account;
 import com.project.bankapp.dto.account.Transaction;
+import com.project.bankapp.dto.account.TransferRequest;
 import com.project.bankapp.dto.response.CustomerAccountResponse;
+import com.project.bankapp.exception.InsufficientBalanceException;
 import com.project.bankapp.model.Customer;
 import com.project.bankapp.model.ERole;
 import com.project.bankapp.model.Role;
@@ -12,12 +14,14 @@ import com.project.bankapp.repository.AccountRepository;
 import com.project.bankapp.repository.CustomerRepository;
 import com.project.bankapp.repository.RoleRepository;
 import com.project.bankapp.repository.UserRepository;
+import com.project.bankapp.service.accountService.AccountServiceImpl;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -121,5 +125,42 @@ public class CustomerServiceImpl implements CustomerService{
         customerAccountResponse.setTransactions(transactions);
 
         return customerAccountResponse;
+    }
+
+    // ======================= Transfer Between Accounts =======================
+    @Autowired
+    private AccountServiceImpl accountService;
+    public String transferBetweenAccounts(TransferRequest transferRequest){
+        Long fromAccountNumber = transferRequest.getFromAccountNumber();
+        Long toAccountNumber = transferRequest.getToAccountNumber();
+        BigDecimal amount = transferRequest.getAmount();
+
+        //check if the fromAccountNumber and toAccountNumber belong to the customer with the given customerId
+        Account fromAccount = accountService.getAccountById(fromAccountNumber);
+        Account toAccount = accountService.getAccountById(toAccountNumber);
+
+        if(fromAccount != null && toAccount != null){
+            //ensure that the source account has sufficient balance
+            if(fromAccount.getAccountBalance().compareTo(amount) >=0){
+                //deduct the amount from the source account:
+                BigDecimal newBalance = fromAccount.getAccountBalance().subtract(amount);
+                fromAccount.setAccountBalance(newBalance);
+
+                //add the amount to the destination account:
+                newBalance = toAccount.getAccountBalance().add(amount);
+                toAccount.setAccountBalance(newBalance);
+
+                //update the accounts in the database:
+                accountRepository.save(fromAccount);
+                accountRepository.save(toAccount);
+
+                return "Transfer successful!";
+            } else{
+                throw new InsufficientBalanceException("Insufficient balance in source account");
+            }
+        }
+        else{
+            return "Invalid account number(s)!";
+        }
     }
 }

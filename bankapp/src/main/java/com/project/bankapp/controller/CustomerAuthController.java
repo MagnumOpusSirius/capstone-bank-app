@@ -3,10 +3,12 @@ package com.project.bankapp.controller;
 import com.project.bankapp.controller.customeraccount.AccountController;
 import com.project.bankapp.dto.LoginRequest;
 import com.project.bankapp.dto.UpdateCustomerRequest;
+import com.project.bankapp.dto.account.TransferRequest;
 import com.project.bankapp.dto.beneficiary.BeneficiaryRequest;
 import com.project.bankapp.dto.beneficiary.BeneficiaryResponse;
 import com.project.bankapp.dto.response.CustomerAccountResponse;
 import com.project.bankapp.dto.response.JwtResponse;
+import com.project.bankapp.exception.InsufficientBalanceException;
 import com.project.bankapp.model.Customer;
 import com.project.bankapp.model.ERole;
 import com.project.bankapp.model.User;
@@ -198,4 +200,16 @@ public class CustomerAuthController {
         }
     }
 
+    // ======================= Transfer amount from account to another =======================
+    @PutMapping("/transfer")
+    public ResponseEntity<?> transferBetweenAccounts(@Valid @RequestBody TransferRequest transferRequest){
+        try {
+            customerService.transferBetweenAccounts(transferRequest);
+            return ResponseEntity.ok("Transfer Successful");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found");
+        } catch (InsufficientBalanceException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insufficient balance");
+        }
+    }
 }
