@@ -62,9 +62,13 @@ public class CustomerAuthController {
     // ======================= Register =======================
     @PostMapping("/register")
     public ResponseEntity<?> signUpCustomer(@Valid @RequestBody Customer customer){
-        //check if the username is already taken
+        //check if the username is already taken and return status 400
         if(customerRepository.findByUsername(customer.getUsername()).isPresent()){
-            return ResponseEntity.badRequest().body("Error: Username is already taken!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Username is already taken!");
+        }
+        //check if the password and confirm password match:
+        if(!customer.isPasswordConfirmed()){
+            return ResponseEntity.badRequest().body("Error: Password and Confirm Password do not match!");
         }
 
         //create a new Customer's account:

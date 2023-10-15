@@ -1,0 +1,39 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .top-corner {
+    position: fixed;
+    top: 20px; 
+    right: 300px;
+  }
+
+  .top-logo {
+    position: fixed;
+    top: 0; 
+    left: 320px;
+  }
+
+  .bank-logo {
+    margin-right: 20px;
+  }
+  
+  .login-form {
+    width: 300px;
+  }
+  
+  .forget-password{
+    margin-left: 91px;
+  }
+
+  .form-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+
+  

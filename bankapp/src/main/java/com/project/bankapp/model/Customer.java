@@ -26,19 +26,17 @@ public class Customer {
     @NotBlank
     private String password;
 
-    @NotNull
+    @Transient
+    private String confirmPassword;
+
     private String phone;
 
-    @NotNull
     private String pan;
 
-    @NotNull
     private String aadhar;
 
-    @NotNull
     private String secretQuestion;
 
-    @NotNull
     private String secretAnswer;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
@@ -63,5 +61,9 @@ public class Customer {
        }
        beneficiaries.add(beneficiary);
        beneficiary.setCustomer(this);
+    }
+
+    public boolean isPasswordConfirmed(){
+        return password != null && confirmPassword != null && password.equals(confirmPassword);
     }
 }
