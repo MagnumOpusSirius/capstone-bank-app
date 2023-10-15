@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import logo from "../logo.png";
 import axios from "axios";
+// import { getUserRole } from "../Authorization/authService";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -28,8 +29,21 @@ const LoginForm = () => {
       if (response.data && response.data.jwtToken) {
         //store the token in the local storage
         localStorage.setItem("jwtToken", response.data.jwtToken);
-        //navigate to the dashboard
+
+        //check the user role:
+        // const userRole = getUserRole();
+        // console.log("User role:", userRole);
+
+        // //navigate to the dashboard based on the user role
+        // if (userRole === "CUSTOMER") {
         navigate("/dashboard");
+        // } else if (userRole === "STAFF") {
+        //   navigate("/staff-dashboard");
+        // } else if (userRole === "ADMIN") {
+        //   navigate("/admin-dashboard");
+        // } else {
+        //   alert("Unauthorized access!");
+        // }
       } else {
         alert("Login Failed!");
       }

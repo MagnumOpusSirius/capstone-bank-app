@@ -1,0 +1,55 @@
+/* Dashboard.css */
+.dashboard {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .navigation-menu {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    min-width: 200px;
+  }
+  
+  .navigation-menu a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+  }
+  
+  .navigation-menu a:hover {
+    background-color: #555;
+  }
+  
+  .account-list {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-width: 200px;
+  }
+  
+  .account-list h3 {
+    margin-top: 0;
+  }
+  
+  .create-account {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .logout {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
