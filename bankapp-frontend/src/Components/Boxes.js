@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Boxes = () => {
     const [checkedSavings, setCheckedSavings] = React.useState(false);
     const [checkedCurrent, setCheckedCurrent] = React.useState(false);
