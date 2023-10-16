@@ -27,23 +27,22 @@ const LoginForm = () => {
 
       //check if authentication is successful and a JWT token was received
       if (response.data && response.data.jwtToken) {
-        //store the token in the local storage
+        // Store the token in local storage
         localStorage.setItem("jwtToken", response.data.jwtToken);
 
-        //check the user role:
-        // const userRole = getUserRole();
-        // console.log("User role:", userRole);
+        // Check the user role (assuming the response includes roles)
+        const roles = response.data.roles;
+        // Determine the user's role, e.g., "CUSTOMER," "ADMIN," or "STAFF"
 
-        // //navigate to the dashboard based on the user role
-        // if (userRole === "CUSTOMER") {
-        navigate("/dashboard");
-        // } else if (userRole === "STAFF") {
-        //   navigate("/staff-dashboard");
-        // } else if (userRole === "ADMIN") {
-        //   navigate("/admin-dashboard");
-        // } else {
-        //   alert("Unauthorized access!");
-        // }
+        // If the user role is "CUSTOMER," navigate to the customer's dashboard
+        if (roles.includes("CUSTOMER")) {
+          const customerId = response.data.id; // Replace with the actual customer ID field name
+          localStorage.setItem("customerId", customerId);
+          navigate(`/dashboard/${customerId}`);
+        } else {
+          // Handle other roles or scenarios here
+          alert("Login successful but unsupported role");
+        }
       } else {
         alert("Login Failed!");
       }

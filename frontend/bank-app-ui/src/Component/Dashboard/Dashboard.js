@@ -8,6 +8,7 @@ function Dashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("customerId");
     navigate("/");
   };
 

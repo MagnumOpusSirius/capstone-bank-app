@@ -70,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/api/customer/register").permitAll()
                     .antMatchers("/api/customer/authenticate").permitAll()
-                    .antMatchers("/api/customer/**").hasAuthority("CUSTOMER")
+                    .antMatchers("/api/customer/**").permitAll()
                     .antMatchers("/api/admin/**").permitAll()
                     .antMatchers("/api/staff/**").permitAll()
 //                    .antMatchers("/api/customer/**").hasRole("CUSTOMER")

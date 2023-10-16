@@ -15,10 +15,10 @@ function App() {
         <Route path="/staff-login" element={<Staff />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgetPassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/:customerId" element={<Dashboard />} />
         {/* Nested routes for dashboard components */}
-        <Route path="/" element={<NavigationMenu />} />
-        <Route path="/" element={<AccountList />} />
+        {/* <Route path="/" element={<NavigationMenu />} /> */}
+        <Route path="account" element={<AccountList />} />
       </Routes>
     </div>
   );
