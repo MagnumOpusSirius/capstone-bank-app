@@ -1,52 +1,16 @@
-import "./DashboardNavStyles.css";
+import "./Profile_navbarStyles.css";
 
 import React from "react";
 import { Link } from "react-router-dom";
 const Profile_navbar = () => {
   return (
-    <>
-      <nav >
-        <a href="index.html">
-        </a>
-        
-        <div class="navbar">
-          <ul id="nav-items">
-            <li>
-              <a href="create" to="/">
-                Create Account
-              </a>
-            </li>
-            
-            <li>
-              <a 
-              href="add" to="add">
-                Add Beneficiary
-              </a>
-            </li>
-            
-            <li>
-              <a href="remove" to="remove">
-                Remove Beneficiary
-              </a>
-            </li>
-
-            <li>
-              <a 
-              href="transfer" to="transfer">
-                Transfer Money
-              </a>
-            </li>
-
-            <li>
-              <a 
-              href="view" to="view">
-                View Statement
-              </a>
-            </li>
-          </ul>
+        <div class="profile-navbar">
+            <Link to="/create-account">Create Account</Link>
+            <Link to="/add-beneficiary">Add Beneficiary</Link>
+            <Link to="/remove-beneficiary">Remove Beneficiary</Link>
+            <Link to="/transfer-money">Transfer Money</Link>
+            <Link to="/view-statement">View Statement</Link>
         </div>
-      </nav>
-    </>
   );
 };
 export default Profile_navbar;

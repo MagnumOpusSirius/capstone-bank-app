@@ -1,32 +1,42 @@
-
-.profile-navbar a {
+nav{
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: space-between;
     background: black;
     padding: 20px 80px;
     box-shadow: 0 5px 15px rgba(red, green, blue, alpha);
 }
 
+#nav-items{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.profile-navbar{
+#nav-items ul{
     list-style: none;
-    padding: 0 10px;
+    padding: 0 20px;
     position: relative;
     
 }
-.profile-navbar a{ 
+
+#nav-items ul{
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 600;
     color: white;
 }
 
-.profile-navbar li a:hover{
+#nav-items li a:hover,
+#nav-items li a.home{
+    color: red;
+}
+#nav-items li a:hover{
     color: blue;
-} 
+}
 
-.profile-navbar {
+
+#navbar {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -39,4 +49,13 @@
     background: black;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
     padding: 40px 0 0 10px;   
+}
+
+#navbar {
+    display: block;
+}
+
+#navbar i{
+    font-size: 24px;
+    cursor: pointer;
 }

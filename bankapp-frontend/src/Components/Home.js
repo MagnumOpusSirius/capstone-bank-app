@@ -7,11 +7,9 @@ import Profile from "./Profile";
 
 function Home() {
     return(
-        "Yes"
-        // <Navbar/>
-        // <Login/>,
-        // <Dashboard/>,
-        // <Profile/>
+        <Navbar/>,
+        <Login/>
+       
     )
     
 }
