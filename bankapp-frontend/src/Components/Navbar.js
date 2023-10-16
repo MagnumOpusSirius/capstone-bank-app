@@ -28,7 +28,7 @@ const Navbar = () => {
             
             <li>
               <a class="nav-link" to="Register">
-                Register
+                Staff Corner
               </a>
             </li>
           </ul>

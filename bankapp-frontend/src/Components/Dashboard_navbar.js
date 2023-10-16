@@ -2,13 +2,11 @@ import "./DashboardNavStyles.css";
 
 import React from "react";
 import { Link } from "react-router-dom";
-
-const DashboardNavbar = () => {
+const Dashboard_navbar = () => {
   return (
     <>
       <nav >
         <a href="index.html">
-
         </a>
         
         <div class="navbar">
@@ -37,5 +35,4 @@ const DashboardNavbar = () => {
     </>
   );
 };
-
-export default DashboardNavbar;
+export default Dashboard_navbar;
