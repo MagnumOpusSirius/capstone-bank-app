@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Service
 public class BeneficiaryService {
-    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(BeneficiaryService.class);
+//    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(BeneficiaryService.class);
 
     @Autowired
     private CustomerServiceImpl customerService;
@@ -39,7 +39,7 @@ public class BeneficiaryService {
         //validate that the customer and account exist
 
         Optional<Customer> customerOptional = customerRepository.findById(customerId);
-        logger.info("Customer Optional: {}", customerOptional);
+//        logger.info("Customer Optional: {}", customerOptional);
 
         if(customerOptional.isPresent()) {
             Customer customer = customerOptional.get();
@@ -47,9 +47,9 @@ public class BeneficiaryService {
             //create a new beneficiary
             Beneficiary beneficiary = new Beneficiary();
             beneficiary.setAccountNumber(beneficiaryRequest.getAccountNumber());
-            logger.info("Beneficiary account number: {}", beneficiary.getAccountNumber());
+//            logger.info("Beneficiary account number: {}", beneficiary.getAccountNumber());
             beneficiary.setAccountType(beneficiaryRequest.getAccountType());
-            logger.info("Beneficiary account type: {}", beneficiary.getAccountType());
+//            logger.info("Beneficiary account type: {}", beneficiary.getAccountType());
 
             String isApproved = beneficiaryRequest.getApproved();
             if ("no".equalsIgnoreCase(isApproved)) {
@@ -58,6 +58,10 @@ public class BeneficiaryService {
                 beneficiary.setApproved("yes");
             }
 
+            beneficiary.setName(beneficiaryRequest.getName());
+            beneficiary.setIsActive(false);
+
+
             //add the beneficiary to the customer's list of beneficiaries
             customer.addBeneficiary(beneficiary);
 
@@ -65,11 +69,11 @@ public class BeneficiaryService {
             customerRepository.save(customer);
 
             // Log a success message
-            logger.info("Beneficiary with account number {} added successfully", beneficiary.getAccountNumber());
+//            logger.info("Beneficiary with account number {} added successfully", beneficiary.getAccountNumber());
             return "Beneficiary with account number " + beneficiary.getAccountNumber() + " added successfully";
         }else {
             // Log an error message
-            logger.error("Customer with id {} does not exist", customerId);
+//            logger.error("Customer with id {} does not exist", customerId);
             return "Customer with id " + customerId + " does not exist";
         }
     }

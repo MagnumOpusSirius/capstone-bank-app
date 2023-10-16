@@ -9,5 +9,7 @@ public class BeneficiaryRequest {
     private Long accountNumber;
     private AccountType accountType;
     private String approved;
+    private String name;
+    private Boolean isActive;
 
 }

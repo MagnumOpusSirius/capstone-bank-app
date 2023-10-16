@@ -24,10 +24,10 @@ public class Beneficiary {
     @Column(nullable = false)
     private String approved;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Boolean isActive;
 
     @ManyToOne(fetch = FetchType.LAZY)

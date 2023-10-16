@@ -166,7 +166,7 @@ public class CustomerAuthController {
 
     @Autowired
     private BeneficiaryService beneficiaryService;
-    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(AccountController.class);
+    private static final Logger logger = org.slf4j.LoggerFactory.getLogger(CustomerAuthController.class);
     // ======================= Add Beneficiary =======================
     @PostMapping("{customerId}/beneficiary")
     public ResponseEntity<?> addBeneficiary(@PathVariable Long customerId, @RequestBody BeneficiaryRequest beneficiaryRequest){

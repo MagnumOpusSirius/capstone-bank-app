@@ -10,9 +10,9 @@ const CreateAccountForm = () => {
     setInitialDeposit(event.target.value);
   };
 
-  const handleAccountTypeChange = (event) => {
-    setAccountType(event.target.value);
-  };
+  //   const handleAccountTypeChange = (event) => {
+  //     setAccountType(event.target.value);
+  //   };
 
   //get the customer id from local storage
   const customerId = localStorage.getItem("customerId");
