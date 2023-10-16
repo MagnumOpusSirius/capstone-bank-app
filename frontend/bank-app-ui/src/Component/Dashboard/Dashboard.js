@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import NavigationMenu from "./NavigationMenu";
 import AccountList from "./AccountList";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
+import CreateAccountForm from "../account/CreateAccountForm";
+
 function Dashboard() {
   const navigate = useNavigate();
 
@@ -10,6 +12,11 @@ function Dashboard() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("customerId");
     navigate("/");
+  };
+
+  const [showCreateAccountForm, setShowCreateAccountForm] = useState(false);
+  const handleCreateAccountClick = () => {
+    setShowCreateAccountForm(true);
   };
 
   return (
@@ -22,6 +29,13 @@ function Dashboard() {
           Logout
         </button>
         <AccountList />
+        {showCreateAccountForm ? <CreateAccountForm /> : null}
+        <button
+          className="create-account-button"
+          onClick={handleCreateAccountClick}
+        >
+          Create Account
+        </button>
         {/* Placeholder for other components */}
       </div>
     </div>

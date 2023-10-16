@@ -68,7 +68,7 @@ public class CustomerAuthController {
         }
         //check if the password and confirm password match:
         if(!customer.isPasswordConfirmed()){
-            return ResponseEntity.badRequest().body("Error: Password and Confirm Password do not match!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: Password and Confirm Password do not match!");
         }
 
         //create a new Customer's account:
@@ -95,8 +95,12 @@ public class CustomerAuthController {
             //generate a JWT token for the authenticated customer
             String jwt = jwtTokenProvider.generateJwtToken(authentication);
 
+//            Customer customer = (Customer) authentication.getPrincipal();
+//            Long customerId = customer.getCustomerId();
             //get the customer details from the authentication object
             User userDetails = (User) authentication.getPrincipal();
+//            Object principle = authentication.getPrincipal();
+//            System.out.println(principle);
 
             //get the roles from the customer details
             Set<String> roles = userDetails.getRoles().stream()
@@ -104,7 +108,7 @@ public class CustomerAuthController {
                     .collect(Collectors.toSet());
 
             //return the JWT token in the response
-            return ResponseEntity.ok(new JwtResponse(userDetails.getUserId(),jwt, userDetails.getUsername(), roles));
+            return ResponseEntity.ok(new JwtResponse(userDetails.getCustomer().getCustomerId(), jwt, userDetails.getUsername(), roles));
         }
         catch(Exception e){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username/password supplied!");

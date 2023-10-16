@@ -45,6 +45,7 @@ public class CustomerServiceImpl implements CustomerService{
 
         //Step 2: Create a user in USERS_TBL using the customers username and password
         User user = new User(savedCustomer.getUsername(), savedCustomer.getPassword());
+        user.setCustomer(savedCustomer);
 
         //Step 3: Set the users roles:
         Optional<Role> customerRole = roleRepository.findByName(ERole.CUSTOMER);

@@ -23,6 +23,10 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @OneToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(  name = "user_roles",
         joinColumns = @JoinColumn(name = "user_id"),
@@ -37,23 +41,6 @@ public class User implements UserDetails {
         this.username = username;
         this.password = password;
     }
-
-//    private Collection<? extends GrantedAuthority> authorities;
-//
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-////        List<GrantedAuthority> authorities = new ArrayList<>();
-////        for(Role role: roles){
-////            authorities.add(new SimpleGrantedAuthority(role.getName().toString()));
-////
-////        }
-////        return authorities;
-//        return authorities;
-//    }
-//@ElementCollection
-//@CollectionTable(name = "user_authorities", joinColumns = @JoinColumn(name = "user_id"))
-//@Column(name = "authority")
-//private Set<String> authorities = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

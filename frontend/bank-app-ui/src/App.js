@@ -7,6 +7,7 @@ import Staff from "./Component/Staff_Login/staff";
 import Dashboard from "./Component/Dashboard/Dashboard";
 import NavigationMenu from "./Component/Dashboard/NavigationMenu";
 import AccountList from "./Component/Dashboard/AccountList";
+import CreateAccountForm from "./Component/account/CreateAccountForm";
 function App() {
   return (
     <div>
@@ -18,7 +19,8 @@ function App() {
         <Route path="/dashboard/:customerId" element={<Dashboard />} />
         {/* Nested routes for dashboard components */}
         {/* <Route path="/" element={<NavigationMenu />} /> */}
-        <Route path="account" element={<AccountList />} />
+        {/* <Route path="account" element={<AccountList />} /> */}
+        <Route path="/create-account" element={<CreateAccountForm />} />
       </Routes>
     </div>
   );
