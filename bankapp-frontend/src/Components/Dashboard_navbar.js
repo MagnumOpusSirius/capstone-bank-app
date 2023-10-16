@@ -12,20 +12,20 @@ const Dashboard_navbar = () => {
         <div class="navbar">
           <ul id="nav-items">
             <li>
-              <a className="profile" to="/">
+              <a href="profile" className="profile" to="/">
                 Profile
               </a>
             </li>
             
             <li>
               <a 
-              href="nav-link" to="logout">
+              href="logout" to="logout">
                 Logout
               </a>
             </li>
             
             <li>
-              <a class="nav-link" to="Welcome">
+              <a href="welcome" to="Welcome">
                 Welcome
               </a>
             </li>

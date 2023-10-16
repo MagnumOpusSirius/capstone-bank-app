@@ -14,20 +14,20 @@ const Navbar = () => {
         <div class="navbar">
           <ul id="nav-items">
             <li>
-              <a className="home" to="/">
+              <a href="home" className="home" to="/">
                 Home
               </a>
             </li>
             
             <li>
               <a 
-              href="nav-link" to="dashboard">
+              href="{{Profile.js}}" to="dashboard">
                 Dashboard
               </a>
             </li>
             
             <li>
-              <a class="nav-link" to="Register">
+              <a href="staff" to="Register">
                 Staff Corner
               </a>
             </li>

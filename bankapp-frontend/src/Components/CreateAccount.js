@@ -6,7 +6,7 @@ const CreateAccount = props => {
     return (
         <div>
             <h4>CreateAccountForm</h4>
-            <input type='text' placeholder="Enter Initial Deposit" id="username"/>
+            <input type='text' placeholder="Enter Initial Deposit" id="Amount"/>
 
             <h4>Select type of account</h4>
             <Boxes/>
