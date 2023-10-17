@@ -6,6 +6,9 @@ import com.project.bankapp.model.Customer;
 import org.hibernate.sql.Update;
 
 public interface CustomerService {
+    //get customer by username:
+    Customer getCustomerByUsername(String username);
+
     Customer registerCustomer(Customer customer);
 
     Customer getCustomerById(Long customerId);

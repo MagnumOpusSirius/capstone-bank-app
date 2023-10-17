@@ -2,6 +2,7 @@ package com.project.bankapp.controller;
 
 import com.project.bankapp.controller.customeraccount.AccountController;
 import com.project.bankapp.dto.LoginRequest;
+import com.project.bankapp.dto.PasswordUpdateRequest;
 import com.project.bankapp.dto.SecretValidationRequest;
 import com.project.bankapp.dto.UpdateCustomerRequest;
 import com.project.bankapp.dto.account.TransferRequest;
@@ -223,13 +224,37 @@ public class CustomerAuthController {
     }
 
     // ======================= Validate Secret Question/Answer details =======================
-//    @GetMapping("/{username}/forgot/{question}/{answer}")
-//    public ResponseEntity<?> validateSecretDetails(@PathVariable String username, @PathVariable String question, @PathVariable String answer, @RequestBody SecretValidationRequest secretValidationRequest){
-//        try {
-//            String response = customerService.validateSecretDetails(username, secretValidationRequest);
-//            return ResponseEntity.ok(response);
-//        } catch (EntityNotFoundException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Sorry your secret details are not matching");
-//        }
-//    }
+    @GetMapping("/{username}/forgot/{question}/{answer}")
+    public ResponseEntity<?> validateSecretDetails(@PathVariable String username, @PathVariable String question, @PathVariable String answer){
+        Customer customer = customerService.getCustomerByUsername(username);
+//        System.out.println(customer);
+        if(customer != null){
+            if (customer.getSecretQuestion().equals(question) && customer.getSecretAnswer().equals(answer)) {
+                return ResponseEntity.ok("Details validated");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid secret details!");
+    }
+
+    // ======================= Update password =======================
+    @PutMapping("/{username}/forgot")
+    public ResponseEntity<?> updatePassword(@PathVariable String username, @RequestBody PasswordUpdateRequest request) {
+        Customer customer = customerService.getCustomerByUsername(username);
+
+        if (customer != null) {
+            if (username.equals(request.getUsername())) {
+                //encode the new password:
+                String encodedPassword = passwordEncoder.encode(request.getPassword());
+                // Update the password
+                customer.setPassword(encodedPassword);
+                customerRepository.save(customer);
+
+                return ResponseEntity.ok("New password updated successfully!");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid username!");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Sorry, password not updated");
+    }
+
 }

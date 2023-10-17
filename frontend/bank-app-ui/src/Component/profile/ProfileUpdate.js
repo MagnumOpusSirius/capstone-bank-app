@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./ProfileUpdate.css";
+import { Link } from "react-router-dom";
 function ProfileUpdate() {
   const [profileData, setProfileData] = useState({
     customerId: localStorage.getItem("customerId"), //set the customer id from local storage, which is not editable
@@ -49,6 +50,12 @@ function ProfileUpdate() {
   return (
     <div className="profile-update">
       <div className="profile-form">
+        <Link
+          to={`/dashboard/${localStorage.getItem("customerId")}`}
+          className="back-button1"
+        >
+          Back
+        </Link>
         <h2>Profile Update</h2>
         <form onSubmit={handleFormSubmit}>
           <div>

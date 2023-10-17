@@ -11,7 +11,7 @@ import CreateAccountForm from "./Component/account/CreateAccountForm";
 import BeneficiaryList from "./Component/beneficiary/BeneficiaryList";
 import ProfileUpdate from "./Component/profile/ProfileUpdate";
 import MoneyTransfer from "./Component/transfer/MoneyTransfer";
-
+import PasswordRecovery from "./Component/Forget_Password/PasswordRecovery";
 function App() {
   const customerId = localStorage.getItem("customerId");
   // console.log("customerId in app.js:", customerId);
@@ -21,7 +21,8 @@ function App() {
         <Route path="/" element={<LoginForm />} />
         <Route path="/staff-login" element={<Staff />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgetPassword />} />
+        {/* <Route path="/forgot-password" element={<ForgetPassword />} /> */}
+        <Route path="/forgot-password" element={<PasswordRecovery />} />
         <Route path="/dashboard/:customerId" element={<Dashboard />} />
         {/* Nested routes for dashboard components */}
         {/* <Route path="/" element={<NavigationMenu />} /> */}

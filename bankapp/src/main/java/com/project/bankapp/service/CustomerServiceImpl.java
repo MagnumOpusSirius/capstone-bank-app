@@ -38,6 +38,11 @@ public class CustomerServiceImpl implements CustomerService{
     RoleRepository roleRepository;
 
     @Override
+    public Customer getCustomerByUsername(String username) {
+        return customerRepository.findByUsername(username).orElse(null);
+    }
+
+    @Override
     @Transactional
     public Customer registerCustomer(Customer customer) {
         //Step 1: Save customer data to CUSTOMER_TBL
