@@ -10,24 +10,6 @@
     padding: 20px;
   }
   
-  .navigation-menu {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    min-width: 200px;
-  }
-  
-  .navigation-menu a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 0;
-  }
-  
-  .navigation-menu a:hover {
-    background-color: #555;
-  }
-  
   .account-list {
     background-color: #f4f4f4;
     padding: 20px;
@@ -48,8 +30,8 @@
   }
   
   .logout {
-    background-color: #f4f4f4;
+    background-color: #d80707;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #150a0a;
     border-radius: 5px;
   }

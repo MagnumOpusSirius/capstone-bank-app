@@ -1,3 +1,19 @@
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff3300; /* Background color */
+    color: #fff; /* Text color */
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .back-button:hover {
+    background-color: #6a1e0b; /* Darker background color on hover */
+  }
 .money-transfer-container {
     width: 80%;
     margin: 0 auto;

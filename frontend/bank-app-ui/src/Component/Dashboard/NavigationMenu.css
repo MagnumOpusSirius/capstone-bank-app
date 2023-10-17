@@ -1,0 +1,23 @@
+.navigation-menu {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #3e545a, #1e3239);
+    padding: 10px;
+    border-radius: 10px;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+  }
+  
+  .navigation-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  
+  .navigation-menu a:hover {
+    background-color: #0076a3;
+  }

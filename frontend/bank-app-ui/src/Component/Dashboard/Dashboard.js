@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavigationMenu from "./NavigationMenu";
 import AccountList from "./AccountList";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import CreateAccountForm from "../account/CreateAccountForm";
 import AddBeneficiaryForm from "../beneficiary/AddBeneficiaryForm";
-import BeneficiaryList from "../beneficiary/BeneficiaryList";
+// import TopBar from "./TopBar";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 function Dashboard() {
   const navigate = useNavigate();
   const customerId = localStorage.getItem("customerId");
   console.log("customerId in dashboard:", customerId);
+  const [userName, setUserName] = useState("");
   const handleLogout = () => {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("customerId");
@@ -45,8 +46,20 @@ function Dashboard() {
       });
   };
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8086/api/customer/${customerId}`)
+      .then((response) => {
+        setUserName(response.data.username);
+      })
+      .catch((error) => {
+        console.error("Error fetching user name:", error);
+      });
+  }, []);
+
   return (
     <div className="dashboard">
+      {/* <TopBar userName={userName} /> */}
       <div className="navigation-menu">
         <NavigationMenu />
       </div>

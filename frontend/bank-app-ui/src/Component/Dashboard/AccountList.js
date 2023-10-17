@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import "./AccountList.css";
 function AccountList() {
   const [accounts, setAccounts] = useState([]);
   const { customerId } = useParams();
@@ -22,18 +22,34 @@ function AccountList() {
   }, [customerId]);
 
   return (
-    <div className="account-list">
+    <div className="container mt-5">
       <h3>Your Accounts:</h3>
-      <ul>
-        {accounts.map((account) => (
-          <li key={account.accountNumber}>
-            <p>Account Number: {account.accountNumber}</p>
-            <p>Account Type: {account.accountType}</p>
-            <p>Account Balance: ${account.accountBalance.toFixed(2)}</p>
-            <p>Account Status: {account.accountStatus}</p>
-          </li>
-        ))}
-      </ul>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Account Number</th>
+            <th>Account Type</th>
+            <th>Account Balance</th>
+            <th>Account Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {accounts.map((account) => (
+            <tr key={account.accountNumber}>
+              <td>{account.accountNumber}</td>
+              <td>{account.accountType}</td>
+              <td>${account.accountBalance.toFixed(2)}</td>
+              <td
+                style={{
+                  color: account.accountStatus === "DISABLE" ? "red" : "green",
+                }}
+              >
+                {account.accountStatus}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

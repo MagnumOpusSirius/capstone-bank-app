@@ -1,0 +1,28 @@
+.top-bar {
+    background: linear-gradient(to right, #2196F3, #5c78b8); /* Add your desired gradient colors here */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+  }
+  
+  .user-info {
+    text-align: right;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    text-decoration: underline;
+  }

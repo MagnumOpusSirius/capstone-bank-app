@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./MoneyTransfer.css";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 function MoneyTransfer() {
   const { customerId } = useParams();
   const [accounts, setAccounts] = useState([]);
@@ -54,7 +55,11 @@ function MoneyTransfer() {
 
   return (
     <div className="money-transfer-container">
+      <Link to={`/dashboard/${customerId}`} className="back-button">
+        Back
+      </Link>
       <h2>Money Transfer</h2>
+
       <div className="account-selection">
         <label>Source Account:</label>
         <select
