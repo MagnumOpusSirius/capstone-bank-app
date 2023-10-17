@@ -5,10 +5,13 @@ import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import CreateAccountForm from "../account/CreateAccountForm";
 import AddBeneficiaryForm from "../beneficiary/AddBeneficiaryForm";
+import BeneficiaryList from "../beneficiary/BeneficiaryList";
 import axios from "axios";
+import { Link } from "react-router-dom";
 function Dashboard() {
   const navigate = useNavigate();
-
+  const customerId = localStorage.getItem("customerId");
+  console.log("customerId in dashboard:", customerId);
   const handleLogout = () => {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("customerId");
@@ -22,7 +25,7 @@ function Dashboard() {
 
   const [showAddBeneficiaryForm, setShowAddBeneficiaryForm] = useState(false);
   const handleAddBeneficiary = (beneficiaryRequest) => {
-    const customerId = localStorage.getItem("customerId");
+    // const customerId = localStorage.getItem("customerId");
     axios
       .post(
         `http://localhost:8086/api/customer/${customerId}/beneficiary`,
@@ -62,10 +65,13 @@ function Dashboard() {
         <button onClick={() => setShowAddBeneficiaryForm(true)}>
           Add Beneficiary
         </button>
+
         {showAddBeneficiaryForm && (
           <AddBeneficiaryForm onAddBeneficiary={handleAddBeneficiary} />
         )}
         {/* Placeholder for other components */}
+        {/* Render the BeneficiaryList component with the customerId prop */}
+        {/* <BeneficiaryList customerId={customerId} /> */}
       </div>
     </div>
   );

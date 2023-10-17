@@ -115,6 +115,7 @@ public class BeneficiaryService {
                 BeneficiaryResponse response = new BeneficiaryResponse();
 
                 //set the beneficiary response object properties
+                response.setBeneficiaryId(beneficiary.getBeneficiaryId());
                 response.setBeneficiaryAccountNumber(beneficiary.getAccountNumber());
                 response.setBeneficiaryName(beneficiary.getName());
                 response.setActive(beneficiary.getIsActive() ? "yes" : "no");

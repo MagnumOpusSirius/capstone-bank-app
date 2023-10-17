@@ -8,7 +8,10 @@ import Dashboard from "./Component/Dashboard/Dashboard";
 import NavigationMenu from "./Component/Dashboard/NavigationMenu";
 import AccountList from "./Component/Dashboard/AccountList";
 import CreateAccountForm from "./Component/account/CreateAccountForm";
+import BeneficiaryList from "./Component/beneficiary/BeneficiaryList";
 function App() {
+  const customerId = localStorage.getItem("customerId");
+  console.log("customerId in app.js:", customerId);
   return (
     <div>
       <Routes>
@@ -21,6 +24,10 @@ function App() {
         {/* <Route path="/" element={<NavigationMenu />} /> */}
         {/* <Route path="account" element={<AccountList />} /> */}
         <Route path="/create-account" element={<CreateAccountForm />} />
+        <Route
+          path="/beneficiary-list/:customerId"
+          element={<BeneficiaryList customerId={customerId} />}
+        />
       </Routes>
     </div>
   );
