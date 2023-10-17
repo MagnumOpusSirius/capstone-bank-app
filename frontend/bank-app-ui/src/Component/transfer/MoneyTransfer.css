@@ -1,0 +1,84 @@
+.money-transfer-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .account-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .account-table th,
+  .account-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .account-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .account-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .beneficiary-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .amount-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .reason-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .transfer-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .transfer-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .success-message {
+    color: #28a745;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .error-message {
+    color: #dc3545;
+    font-weight: bold;
+    margin-top: 10px;
+  }

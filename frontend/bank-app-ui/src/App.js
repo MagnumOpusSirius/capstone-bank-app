@@ -10,6 +10,8 @@ import Dashboard from "./Component/Dashboard/Dashboard";
 import CreateAccountForm from "./Component/account/CreateAccountForm";
 import BeneficiaryList from "./Component/beneficiary/BeneficiaryList";
 import ProfileUpdate from "./Component/profile/ProfileUpdate";
+import MoneyTransfer from "./Component/transfer/MoneyTransfer";
+
 function App() {
   const customerId = localStorage.getItem("customerId");
   // console.log("customerId in app.js:", customerId);
@@ -30,6 +32,7 @@ function App() {
           element={<BeneficiaryList customerId={customerId} />}
         />
         <Route path="/view-profile" element={<ProfileUpdate />} />
+        <Route path="/money-transfer/:customerId" element={<MoneyTransfer />} />
       </Routes>
     </div>
   );

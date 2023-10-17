@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./BeneficiaryList.css";
-const customerId = localStorage.getItem("customerId");
-console.log("first customerId in list:", customerId);
+// const customerId = localStorage.getItem("customerId");
+// console.log("first customerId in list:", customerId);
+
 function BeneficiaryList({ customerId }) {
   const [beneficiaries, setBeneficiaries] = useState([]);
   console.log("second customerId in list:", customerId);
