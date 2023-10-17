@@ -5,13 +5,14 @@ import Register from "./Component/Register/register";
 import ForgetPassword from "./Component/Forget_Password/forget";
 import Staff from "./Component/Staff_Login/staff";
 import Dashboard from "./Component/Dashboard/Dashboard";
-import NavigationMenu from "./Component/Dashboard/NavigationMenu";
-import AccountList from "./Component/Dashboard/AccountList";
+// import NavigationMenu from "./Component/Dashboard/NavigationMenu";
+// import AccountList from "./Component/Dashboard/AccountList";
 import CreateAccountForm from "./Component/account/CreateAccountForm";
 import BeneficiaryList from "./Component/beneficiary/BeneficiaryList";
+import ProfileUpdate from "./Component/profile/ProfileUpdate";
 function App() {
   const customerId = localStorage.getItem("customerId");
-  console.log("customerId in app.js:", customerId);
+  // console.log("customerId in app.js:", customerId);
   return (
     <div>
       <Routes>
@@ -28,6 +29,7 @@ function App() {
           path="/beneficiary-list/:customerId"
           element={<BeneficiaryList customerId={customerId} />}
         />
+        <Route path="/view-profile" element={<ProfileUpdate />} />
       </Routes>
     </div>
   );
