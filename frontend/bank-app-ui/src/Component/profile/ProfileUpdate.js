@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./ProfileUpdate.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function ProfileUpdate() {
+  const navigate = useNavigate();
   const [profileData, setProfileData] = useState({
     customerId: localStorage.getItem("customerId"), //set the customer id from local storage, which is not editable
     fullName: "",
@@ -38,6 +40,7 @@ function ProfileUpdate() {
       .then((response) => {
         if (response.status === 200) {
           alert("Profile updated successfully!");
+          navigate(`/dashboard/${profileData.customerId}`);
         } else {
           alert("Failed to update profile.");
         }
@@ -124,7 +127,9 @@ function ProfileUpdate() {
               onChange={handleInputChange}
             />
           </div>
-          <button type="submit">Update Profile</button>
+          <button type="submit" onClick={handleFormSubmit}>
+            Update Profile
+          </button>
         </form>
       </div>
     </div>
