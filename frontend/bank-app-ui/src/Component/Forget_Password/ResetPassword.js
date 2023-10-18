@@ -27,20 +27,37 @@ function ResetPassword() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+    handlePasswordChange();
+  };
+
   return (
     <div className="reset-password-container">
-      {" "}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/path-to-poster-image.jpg"
+        className="background-video"
+      >
+        <source src="/videos/video-1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>{" "}
       {/* Add a className */}
-      <h2>Reset Password</h2>
-      <p>Username: {username}</p>
-      <label>New Password:</label>
-      <input
-        type="password"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
-      <button onClick={handlePasswordChange}>Change Password</button>
-      <p className="message">{message}</p> {/* Add a className */}
+      <form onSubmit={handleSubmit}>
+        <h2>Reset Password</h2>
+        <p>Username: {username}</p>
+        <label>New Password:</label>
+        <input
+          type="password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <button type="submit">Change Password</button>
+        <p className="message">{message}</p>
+      </form>
     </div>
   );
 }

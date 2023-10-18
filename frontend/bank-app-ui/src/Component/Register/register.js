@@ -59,6 +59,17 @@ const Register = () => {
 
   return (
     <div className="register-container">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/path-to-poster-image.jpg"
+        className="background-video"
+      >
+        <source src="/videos/video-3.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="top-corner">
         <Link to="/staff-login">Staff Corner</Link>
       </div>

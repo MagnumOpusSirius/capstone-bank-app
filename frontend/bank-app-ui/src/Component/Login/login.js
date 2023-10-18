@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
-import logo from "../logo.png";
+import spaceBank from "../spaceBank.png";
 import axios from "axios";
 // import { getUserRole } from "../Authorization/authService";
 
@@ -55,14 +55,25 @@ const LoginForm = () => {
 
   return (
     <div className="login-container">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/path-to-poster-image.jpg"
+        className="background-video"
+      >
+        <source src="/videos/video-4.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div className="top-corner">
         <Link to="/staff-login">Staff Corner</Link>
       </div>
       <div className="top-logo">
-        <img src={logo} width={80} height={80} alt="Bank Logo" />
+        <img src={spaceBank} width={80} height={80} alt="Bank Logo" />
       </div>
       <div className="bank-logo">
-        <img src={logo} width={250} height={250} alt="Bank Logo" />
+        <img src={spaceBank} width={250} height={250} alt="Bank Logo" />
       </div>
       <div className="login-form">
         <h2>Bank Login</h2>

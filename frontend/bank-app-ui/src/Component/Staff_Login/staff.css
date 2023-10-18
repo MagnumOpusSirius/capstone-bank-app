@@ -1,3 +1,12 @@
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
 .staff {
     display: flex;
     flex-direction: column;
@@ -8,9 +17,10 @@
   }
   
   .login-container2 {
-    width: 300px;
-    border: 1px solid #ccc;
+    position: relative;
+    z-index: 1;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
   }
   

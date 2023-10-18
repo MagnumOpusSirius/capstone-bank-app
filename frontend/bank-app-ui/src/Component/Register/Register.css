@@ -1,11 +1,14 @@
 .register-container {
+  align-items: center;
+    justify-content: center;
     max-width: 400px;
-    margin-top: 50px;
-    margin-left: 420px;
+    margin-top: 60px;
+    margin-left: 690px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); /* Light transparent white background */
   }
   
   .form-group {
@@ -38,4 +41,5 @@
   button:hover {
     background-color: #45a049;
   }
+  
   

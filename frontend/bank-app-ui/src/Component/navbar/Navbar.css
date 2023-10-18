@@ -1,0 +1,29 @@
+nav {
+    background-color: #007bff; /* Background color for the navigation bar */
+    padding: 23px 0; /* Top and bottom padding */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Drop shadow for a slight elevation */
+  }
+  
+  nav ul {
+    list-style: none; /* Remove list bullet points */
+    padding: 0;
+    display: flex; /* Display the items horizontally */
+    justify-content: flex-end; /* Align items to the right */
+  }
+  
+  nav li {
+    margin-right: 20px; /* Spacing between navigation items */
+  }
+  
+  nav a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Text color for links */
+    font-weight: bold; /* Make text bold */
+    transition: color 0.3s; /* Smooth color transition on hover */
+  
+    /* You can also add other styles like text size, font family, etc. */
+  }
+  
+  nav a:hover {
+    color: #0056b3; /* Color when the link is hovered */
+  }

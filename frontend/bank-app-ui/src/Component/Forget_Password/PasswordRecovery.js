@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./PasswordRecovery.css";
+import { Link } from "react-router-dom";
+
 function PasswordRecovery() {
   const [username, setUsername] = useState("");
   const [selectedQuestion, setSelectedQuestion] = useState("");
@@ -34,39 +36,55 @@ function PasswordRecovery() {
   };
 
   return (
-    <div>
-      <h2>Password Recovery</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Select Security Question:</label>
-          <select
-            value={selectedQuestion}
-            onChange={(e) => setSelectedQuestion(e.target.value)}
-          >
-            <option value="">Select a security question</option>
-            <option value="question1">What is your favorite color?</option>
-            <option value="question2">What is your pet's name?</option>
-          </select>
-        </div>
-        <div>
-          <label>Answer:</label>
-          <input
-            type="text"
-            value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
-          />
-        </div>
-        <button type="submit">Validate</button>
-      </form>
-      {error && <p className="error-message">{error}</p>}
+    <div className="center-container">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/path-to-poster-image.jpg"
+        className="background-video"
+      >
+        <source src="/videos/video-1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div className="form-container">
+        <Link to="/" className="back-button">
+          Back
+        </Link>
+        <h2>Password Recovery</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Username:</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Select Security Question:</label>
+            <select
+              value={selectedQuestion}
+              onChange={(e) => setSelectedQuestion(e.target.value)}
+            >
+              <option value="">Select a security question</option>
+              <option value="question1">What is your favorite color?</option>
+              <option value="question2">What is your pet's name?</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label>Answer:</label>
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+            />
+          </div>
+          <button type="submit">Validate</button>
+          {error && <p className="error-message">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 }

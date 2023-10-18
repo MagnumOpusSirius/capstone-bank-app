@@ -13,11 +13,13 @@ import ProfileUpdate from "./Component/profile/ProfileUpdate";
 import MoneyTransfer from "./Component/transfer/MoneyTransfer";
 import PasswordRecovery from "./Component/Forget_Password/PasswordRecovery";
 import ResetPassword from "./Component/Forget_Password/ResetPassword";
+import Navbar from "./Component/navbar/Navbar";
 function App() {
   const customerId = localStorage.getItem("customerId");
   // console.log("customerId in app.js:", customerId);
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/" element={<LoginForm />} />
         <Route path="/staff-login" element={<Staff />} />
