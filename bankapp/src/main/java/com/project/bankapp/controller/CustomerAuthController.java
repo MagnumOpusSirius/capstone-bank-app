@@ -15,6 +15,7 @@ import com.project.bankapp.model.Customer;
 import com.project.bankapp.model.ERole;
 import com.project.bankapp.model.User;
 import com.project.bankapp.repository.CustomerRepository;
+import com.project.bankapp.repository.UserRepository;
 import com.project.bankapp.security.jwt.JwtTokenProvider;
 import com.project.bankapp.service.CustomerService;
 import com.project.bankapp.service.CustomerServiceImpl;
@@ -60,6 +61,8 @@ public class CustomerAuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserRepository userRepository;
     // ======================= Register =======================
     @PostMapping("/register")
     public ResponseEntity<?> signUpCustomer(@Valid @RequestBody Customer customer){
@@ -240,12 +243,16 @@ public class CustomerAuthController {
     @PutMapping("/{username}/forgot")
     public ResponseEntity<?> updatePassword(@PathVariable String username, @RequestBody PasswordUpdateRequest request) {
         Customer customer = customerService.getCustomerByUsername(username);
+        User user = (User) customUserDetailsService.loadUserByUsername(username);
 
-        if (customer != null) {
+        if (user != null) {
             if (username.equals(request.getUsername())) {
                 //encode the new password:
                 String encodedPassword = passwordEncoder.encode(request.getPassword());
                 // Update the password
+                user.setPassword(encodedPassword);
+                userRepository.save(user);
+
                 customer.setPassword(encodedPassword);
                 customerRepository.save(customer);
 
