@@ -4,6 +4,7 @@ import Boxes from "./Boxes";
 const AddBeneficiary = props => {
 
     return (
+
         <div>
             <h4>AddBeneficiary</h4>
             <input type='text' placeholder="Enter Account Number" id="AccNumber"/>
@@ -11,7 +12,7 @@ const AddBeneficiary = props => {
 
 
             <h4>Select type of account</h4>
-            <Boxes/>
+            {/* <Boxes/> */}
             <button>Submit</button>
         </div>
     )

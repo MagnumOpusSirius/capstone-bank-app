@@ -1,0 +1,37 @@
+/* Dashboard.css */
+.dashboard {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    background: black;
+    padding: 20px 80px;
+    box-shadow: 0 5px 15px rgba(red, green, blue, alpha);
+  }
+  
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  /* .profile-navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    min-width: 200px;
+  } */
+  
+  .profile-navbar a {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: black;
+    padding: 20px 80px;
+    box-shadow: 0 5px 15px rgba(red, green, blue, alpha);
+  }
+  
+  .profile-navbar a:hover {
+    background-color: #555;
+  }
+  
+ 
+  

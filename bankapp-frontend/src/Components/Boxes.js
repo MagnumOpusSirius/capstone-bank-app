@@ -11,7 +11,7 @@ const Boxes = () => {
     };
     return (
         <div>
-        <Checkbox
+        {/* <Checkbox
             label="Savings Account"
             value={checkedSavings}
             onChange={handleChangeSavings}
@@ -20,7 +20,7 @@ const Boxes = () => {
             label="Current Account"
             value={checkedCurrent}
             onChange={handleChangeCurrent}
-        />
+        /> */}
         </div>
     );
     };

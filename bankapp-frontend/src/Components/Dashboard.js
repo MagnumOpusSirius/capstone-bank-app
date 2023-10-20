@@ -1,3 +1,5 @@
+import "./Dashboard.css";
+
 import React from "react";
 import Dashboard_navbar from "./Dashboard_navbar";
 import Profile_navbar from "./Profile_navbar";
@@ -5,7 +7,7 @@ import Profile from "./Profile";
 
 function Dashboard() {
     return(
-        <div>
+        <div className="dashboard">
         <h1>Dashboard view</h1>
         <Dashboard_navbar/>
             <div className="profile-navbar">

@@ -1,7 +1,7 @@
 import "./Profile_navbarStyles.css";
-
 import React from "react";
 import { Link } from "react-router-dom";
+import Dashboard from "./Dashboard";
 const Profile_navbar = () => {
   return (
         <div class="profile-navbar">
@@ -10,6 +10,7 @@ const Profile_navbar = () => {
             <Link to="/remove-beneficiary">Remove Beneficiary</Link>
             <Link to="/transfer-money">Transfer Money</Link>
             <Link to="/view-statement">View Statement</Link>
+
         </div>
   );
 };

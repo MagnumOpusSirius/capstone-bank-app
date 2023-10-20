@@ -1,4 +1,4 @@
-nav{
+/* nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,4 +58,16 @@ nav{
 #navbar i{
     font-size: 24px;
     cursor: pointer;
-}
+} */
+  
+  .Profile-navbar link {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+  }
+  
+  .Profile-navbar {
+    background-color: #555;
+  }
